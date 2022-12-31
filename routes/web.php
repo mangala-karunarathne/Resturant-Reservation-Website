@@ -26,7 +26,7 @@ Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(fun
     Route::resource('/categories', CategoryController::class);
     Route::resource('/menus','App\Http\Controllers\Admin\MenuController');
     Route::resource('/tables', 'App\Http\Controllers\Admin\TableController');
-    Route::resource('/reservation', 'App\Http\Controllers\Admin\ReservationController');
+    Route::resource('/reservations', 'App\Http\Controllers\Admin\ReservationController');
     // Route::get('/markasnotcompleted/{id}','App\Http\Controllers\TaskController@UpdateTaskAsNotCompleted');
 });
 
