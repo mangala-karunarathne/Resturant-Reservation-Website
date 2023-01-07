@@ -58,7 +58,7 @@
                                         </script>
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="showAlert()">Delete</button>
+                                        <button type="submit" onclick="showAlert()" >Delete</button>
                                     </form>
                                 </div>
                             </td>
