@@ -15,13 +15,10 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="py-3 px-6">
-                                Product name
+                                Name
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                Color
-                            </th>
-                            <th scope="col" class="py-3 px-6">
-                                Category
+                                Image
                             </th>
                             <th scope="col" class="py-3 px-6">
                                 Price
@@ -32,57 +29,40 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($menus as $menu)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Apple MacBook Pro 17"
-                            </th>
-                            <td class="py-4 px-6">
-                                Sliver
+                            <td scope="row"
+                                class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{$menu->name}}
                             </td>
-                            <td class="py-4 px-6">
-                                Laptop
+                            <td scope="row"
+                                class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <img src="{{ asset('storage/app/public/menu/' . $menu->image) }}" alt="{{$menu->name}}"
+                                    class="w-16 h-16 rounded">
                             </td>
-                            <td class="py-4 px-6">
-                                $2999
+                            <td scope="row"
+                                class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{$menu->price}}
                             </td>
-                            <td class="py-4 px-6">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Microsoft Surface Pro
-                            </th>
-                            <td class="py-4 px-6">
-                                White
-                            </td>
-                            <td class="py-4 px-6">
-                                Laptop PC
-                            </td>
-                            <td class="py-4 px-6">
-                                $1999
-                            </td>
-                            <td class="py-4 px-6">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <div class="flex space-x-2">
+                                    <a href="{{ route('admin.menus.edit', $menu->id)}}"
+                                        class="py-2 px-4 w-full font-medium bg-green-500 hover:bg-green-700 rounded-lg text-white" >Edit</a>
+                                    <form class="py-2 px-4 w-full  font-medium bg-red-500 hover:bg-red-700 rounded-lg text-white" 
+                                        method="POST" action="{{route('admin.menus.destroy', $menu)}}">
+                                        <script>
+                                            function showAlert() {
+                                            alert("Are You Sure to Delete !");
+                                          }
+                                        </script>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" onclick="showAlert()" >Delete</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
-                        <tr class="bg-white dark:bg-gray-800">
-                            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Magic Mouse 2
-                            </th>
-                            <td class="py-4 px-6">
-                                Black
-                            </td>
-                            <td class="py-4 px-6">
-                                Accessories
-                            </td>
-                            <td class="py-4 px-6">
-                                $99
-                            </td>
-                            <td class="py-4 px-6">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
