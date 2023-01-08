@@ -13,7 +13,7 @@
             </div>
             <div class="m-2 p-2 bg-slate-100 rounded">
                 <div class="space-y-8 divide-y divide-gray-200 w-1/2 mt-10">
-                    <form method="POST" action="{{ route('admin.categories.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.menus.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="sm:col-span-6">
                             <label for="name" class="block text-sm font-medium text-gray-700"> Name </label>
@@ -35,6 +35,16 @@
                                 <div class="text-sm text-red-400">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="sm:col-span-6">
+                            <label for="price" class="block text-sm font-medium text-gray-700"> Price </label>
+                            <div class="mt-1">
+                                <input type="number" min="0.00" max="10000.00" step="0.01" id="price" name="price"
+                                    class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                            </div>
+                            @error('price')
+                                <div class="text-sm text-red-400">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <div class="sm:col-span-6 pt-5">
                             <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
                             <div class="mt-1">
@@ -48,9 +58,10 @@
                         <div class="sm:col-span-6 pt-5">
                             <label for="description" class="block text-sm font-medium text-gray-700">Categories</label>
                             <div class="mt-1">
-                                <select multiple>
-                                    @foreach($categories as $category)
-                                        <option>{{$category->name}}</option>
+                                <select id="categories" name="categories[]" class="form-multiselect block w-full mt-1"
+                                    multiple>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
