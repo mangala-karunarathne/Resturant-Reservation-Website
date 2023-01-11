@@ -38,7 +38,7 @@
                             </td>
                             <td scope="row"
                                 class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <img src="{{Storage::url($category->image)}}" alt="{{$category->name}}"
+                                <img src="{{ asset('storage/app/').'/'.$category->image }}" alt="{{$category->name}}"
                                     class="w-16 h-16 rounded">
                             </td>
                             <td scope="row"
