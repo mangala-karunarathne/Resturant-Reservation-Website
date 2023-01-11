@@ -19,6 +19,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
+        // dd($categories);
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -38,10 +39,10 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryStoreRequest $request)
+    public function store(Request $request)
     {
        $image = $request->file('image')->store('public/categories');
-
+        // dd($image);
        Category::create([
         'name'=> $request->name,
         'description'=> $request->description,

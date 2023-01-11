@@ -112,8 +112,10 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Menu $menu)
     {
-        //
+        Storage::delete($menu->image);
+        $menu->delete();
+        return to_route('admin.menus.index');
     }
 }
